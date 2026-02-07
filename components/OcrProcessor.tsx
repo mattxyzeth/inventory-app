@@ -14,8 +14,9 @@ function parseOcrText(text: string): OcrResult {
     .map((l) => l.trim())
     .filter(Boolean);
 
-  // Look for SKU patterns: "SKU: ABC-12345", "SKU ABC12345", standalone codes
-  const skuPattern = /(?:SKU[:\s#-]*)?([A-Z]{2,}[\-]?\d{3,}[\w-]*)/i;
+  // SKU format: 5-18 digit numeric codes (e.g. 221110), or starting with W (e.g. W12345)
+  // Match standalone codes or preceded by "SKU" label
+  const skuPattern = /(?:SKU[:\s#-]*)?(W?\d{5,18})\b/i;
   let sku = "";
   let skuLineIdx = -1;
 
