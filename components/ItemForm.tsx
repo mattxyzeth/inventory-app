@@ -69,7 +69,7 @@ export function ItemForm({
           onChange={(e) => setName(e.target.value)}
           placeholder="e.g. Widget Pro 3000"
           required
-          className="w-full h-12 px-3 rounded-lg border border-gray-300 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full h-12 px-3 rounded-lg border border-gray-300 bg-white text-gray-900 text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         />
       </div>
       <div>
@@ -84,9 +84,9 @@ export function ItemForm({
           type="text"
           value={sku}
           onChange={(e) => setSku(e.target.value)}
-          placeholder="e.g. WP-3000"
+          placeholder="e.g. 221110"
           required
-          className="w-full h-12 px-3 rounded-lg border border-gray-300 text-base font-mono focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full h-12 px-3 rounded-lg border border-gray-300 bg-white text-gray-900 text-base font-mono placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         />
       </div>
       <div>
@@ -103,7 +103,7 @@ export function ItemForm({
           value={quantity}
           onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
           required
-          className="w-full h-12 px-3 rounded-lg border border-gray-300 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full h-12 px-3 rounded-lg border border-gray-300 bg-white text-gray-900 text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         />
       </div>
       <div className="flex gap-2">
