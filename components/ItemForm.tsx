@@ -18,7 +18,7 @@ export function ItemForm({
 }: ItemFormProps) {
   const [name, setName] = useState("");
   const [sku, setSku] = useState("");
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState("1");
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
@@ -32,21 +32,22 @@ export function ItemForm({
     if (editingItem) {
       setName(editingItem.name);
       setSku(editingItem.sku);
-      setQuantity(editingItem.quantity);
+      setQuantity(String(editingItem.quantity));
     }
   }, [editingItem]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name.trim() || !sku.trim() || quantity < 1) return;
+    const qty = parseInt(quantity) || 0;
+    if (!name.trim() || !sku.trim() || qty < 1) return;
 
     setSubmitting(true);
     try {
-      await onSubmit({ name: name.trim(), sku: sku.trim(), quantity });
+      await onSubmit({ name: name.trim(), sku: sku.trim(), quantity: qty });
       if (!editingItem) {
         setName("");
         setSku("");
-        setQuantity(1);
+        setQuantity("1");
       }
     } finally {
       setSubmitting(false);
@@ -101,7 +102,7 @@ export function ItemForm({
           type="number"
           min={1}
           value={quantity}
-          onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+          onChange={(e) => setQuantity(e.target.value)}
           required
           className="w-full h-12 px-3 rounded-lg border border-gray-300 bg-white text-gray-900 text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         />
